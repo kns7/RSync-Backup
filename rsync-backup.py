@@ -6,16 +6,17 @@ import json
 import logging
 import smtplib
 import ssl
+import sys
 
 # Read Configuration
-with open('config.json') as json_data_file:
+with open(sys.path[0] + "config.json") as json_data_file:
     cfg = json.load(json_data_file)
 
 # Set Logging
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',filename=cfg['log']['path'],level=logging.DEBUG)
 
 # Read Mail template
-f=open("mailtemplate.html","r")
+f=open(sys.path[0] + "mailtemplate.html","r")
 mailtemplate = f.read()
 f.close()
 
