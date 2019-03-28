@@ -6,7 +6,6 @@ import json
 import logging
 import smtplib
 import ssl
-import socket
 
 # Read Configuration
 with open('config.json') as json_data_file:
@@ -96,7 +95,7 @@ for job in cfg['jobs']:
 				logging.info("Sending mail to '%s'",recipient)
 				message = mailtemplate				
 
-				server.sendmail(cfg['notification']['SMTP']['from'], recipient, message.format(host=socket.gethostname(),name=job['name'],result=result,resultdetails=resultdetails,duration=duration,details=details.replace("\n","<br/>"),frommail=cfg['notification']['SMTP']['from'],tomail=recipient))
+				server.sendmail(cfg['notification']['SMTP']['from'], recipient, message.format(host=cfg['hostname'],name=job['name'],result=result,resultdetails=resultdetails,duration=duration,details=details.replace("\n","<br/>"),frommail=cfg['notification']['SMTP']['from'],tomail=recipient))
 
 
 logging.info("Script done")
