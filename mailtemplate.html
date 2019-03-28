@@ -1,0 +1,15 @@
+From: RSync-Backup <{frommail}>
+To: <{tomail}>
+MIME-Version: 1.0
+Content-Type: text/html
+Subject: [{host}] Backup job "{name}" {resultdetails}
+
+<hr/>
+<table>
+<tr><th>Jobname</th><td>{name}</td></tr>
+<tr><th>Result</th><td>{result}</td></tr>
+<tr><th>Duration</th><td>{duration} seconds</td></tr>
+</table>
+<hr/>
+Further Details from rsync:<br/>
+{details}

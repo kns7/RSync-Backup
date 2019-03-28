@@ -1,0 +1,32 @@
+{
+	"jobs": [
+		{
+			"name": "",
+			"source": "",
+			"destination": "",
+			"protocol": "",
+			"host": "",
+			"user": "",
+			"excludes": [
+			],
+			"notification": true,
+			"dry-run": false
+		}
+	],
+	"log": {
+		"debug": false,
+		"path": "/var/log/rsync-backup.log"
+	},
+	"notification": {
+		"SMTP": {
+			"host": "",
+			"tls": ,
+			"port": ,
+			"user": "",
+			"password": "",
+			"from": ""
+		},
+		"recipients": [
+		]
+	}
+}
