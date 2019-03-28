@@ -63,24 +63,26 @@ for job in cfg['jobs']:
 	# Starting the Backup Process
 	logging.info("Launching rsync...")
 	start = time.time()
-	cp = subprocess.run(cmd, universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	cp = subprocess.Popen(cmd,universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	#cp = subprocess.run(cmd, universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	stdout, stderr = cp.communicate()
 	elapsed = (time.time() - start)
 	logging.info("Backup duration: %s seconds","{0:.2f}".format(elapsed))
 	duration = "{0:.2f}".format(elapsed)
 	logging.info("RSYNC Result:")
 	if(cp.returncode == 0):
-		for line in cp.stdout.split('\n'):
+		for line in stdout.split('\n'):
 			logging.info(line)
-			resultdetails = "was successfull"
-			result = "<font style='color:#25D665'>Success</font>"
-			details = cp.stdout
+		resultdetails = "was successfull"
+		result = "<font style='color:#25D665'>Success</font>"
+		details = stdout
 	else:
 		logging.error("The backup job could not be completed")
-		for line in cp.stderr.split("\n"):
+		for line in stderr.split("\n"):
 			logging.error("Error details: %s",line)
-			resultdetails = "has failed"
-			result = "<font style='color:#D62525'>Error</font>"
-			details = cp.stderr
+		resultdetails = "has failed"
+		result = "<font style='color:#D62525'>Error</font>"
+		details = stderr
 	
 	if(job['notification']):
 		# Send mail
