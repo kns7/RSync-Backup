@@ -13,4 +13,5 @@ The task should be planed with cron
  - Installation Script
  - Move configuration and Mails Templates to /etc
  - Includes Time Planing in the jobs configuration
+ - Run jobs async
  - Make RSync run as Daemon
