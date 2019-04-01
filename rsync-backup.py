@@ -9,8 +9,7 @@ import ssl
 from pathlib import Path
 
 # Read Configuration
-with open(Path(__file__).parent / "config.json") as json_data_file:
-    cfg = json.load(json_data_file)
+cfg = json.load(Path(__file__).parent / "config.json").read_text())
 
 # Set Logging
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',filename=cfg['log']['path'],level=logging.DEBUG)
